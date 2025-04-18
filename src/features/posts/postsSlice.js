@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import jwtDecode from "jwt-decode";
+import {jwtDecode} from "jwt-decode";
 
 const BASE_URL =
-  "https://twitter-api-sigmaschooltech.sigma-school-full-stack.repl.co";
+  "https://db42a665-2852-4399-b126-4df4a516469c-00-42t9p43ysytj.sisko.replit.dev";
 
 export const fetchPostsByUser = createAsyncThunk(
   "posts/fetchByUser",

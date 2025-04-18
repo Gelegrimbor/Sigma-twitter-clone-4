@@ -1,4 +1,4 @@
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
 import { Button, Col, Image, Nav, Row, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,16 @@ import ProfilePostCard from "./ProfilePostCard";
 export default function ProfileMidBody() {
   const url = "https://pbs.twimg.com/profile_banners/83072625/1602845571/1500x500";
   const pic = "https://pbs.twimg.com/profile_images/1587405892437221376/h167Jlb2_400x400.jpg";
+
+  // useEffect(() => {
+  //   const token = localStorage.getItem("authToken");
+  //   if (token) {
+  //     const decodedToken = jwtDecode(token);
+  //     const userId = decodedToken.id;
+  //     console.log(userId);
+  //     dispatch(fetchPostsByUser(userId));
+  //   }
+  // }, [dispatch]);
 
   const dispatch = useDispatch();
   const posts = useSelector((state) => state.posts.posts);
@@ -83,13 +93,9 @@ export default function ProfileMidBody() {
         <Spinner animation="border" className="ms-3 mt-3" variant="primary" />
       )}
 
-      {posts.map((post) => (
-        <ProfilePostCard
-          key={post.id}
-          content={post.content}
-          postId={post.id}
-        />
-      ))}
+{Array.isArray(posts) && posts.map((post) => (
+  <ProfilePostCard key={post.id} content={post.content} postId={post.id} />
+))}
     </Col>
   );
 }
